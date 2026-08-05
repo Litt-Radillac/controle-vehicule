@@ -1,4 +1,4 @@
-const CACHE_NAME = 'controle-vehicule-v1';
+const CACHE_NAME = 'controle-vehicule-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -24,17 +24,17 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// Stratégie "réseau d'abord" pour l'appli elle-même : dès qu'il y a du réseau,
+// la dernière version publiée sur GitHub Pages est utilisée et mise en cache.
+// Le cache ne sert de secours que si l'appareil est hors-ligne (aucune connexion).
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        if (response.ok && event.request.method === 'GET') {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-        }
-        return response;
-      }).catch(() => cached);
-    })
+    fetch(event.request).then((response) => {
+      if (response.ok && event.request.method === 'GET') {
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+      }
+      return response;
+    }).catch(() => caches.match(event.request))
   );
 });
