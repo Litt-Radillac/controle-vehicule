@@ -19,7 +19,6 @@
     --text:#ECEEF0;
     --text-dim:#8B939B;
     --accent:#F5B700;
-    --accent-dim:#3A3116;
     --ok:#3E8E7E;
     --danger:#E4572E;
     --border:#33393F;
@@ -34,24 +33,25 @@
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
   .hidden{display:none !important;}
 
-  /* Header / plate style */
   .platebar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand-mark{width:10px;height:10px;background:var(--accent);border-radius:2px;transform:rotate(45deg);}
   .brand-text{font-family:var(--mono);letter-spacing:.14em;font-size:11px;color:var(--text-dim);text-transform:uppercase;}
-  .icon-btn{background:none;border:1px solid var(--border);color:var(--text-dim);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .icon-btn{background:none;border:1px solid var(--border);color:var(--text-dim);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
   .icon-btn:active{background:var(--surface-2);}
 
   h1{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;}
-  .sub{color:var(--text-dim);font-size:14px;line-height:1.5;margin:0 0 24px;}
+  .sub{color:var(--text-dim);font-size:14px;line-height:1.5;margin:0 0 20px;}
 
   input[type=text]{
     width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);
-    padding:16px 14px;border-radius:10px;font-size:20px;font-family:var(--mono);letter-spacing:.06em;
-    text-transform:uppercase;margin-bottom:14px;
+    padding:14px;border-radius:10px;font-size:17px;font-family:var(--mono);letter-spacing:.03em;
+    margin-bottom:12px;
   }
+  input.plate{font-size:20px;text-transform:uppercase;letter-spacing:.06em;}
   input[type=text]:focus{outline:none;border-color:var(--accent);}
-  .field-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:8px;font-family:var(--mono);}
+  .field-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:6px;font-family:var(--mono);}
+  .field-block{margin-bottom:14px;}
 
   .btn{
     display:flex;align-items:center;justify-content:center;gap:8px;
@@ -64,30 +64,24 @@
   .btn-ghost{background:none;color:var(--text-dim);border:1px solid var(--border);}
   .btn-danger{background:none;color:var(--danger);border:1px solid var(--danger);}
   .btn:disabled{opacity:.4;}
-  .btn-row{display:flex;gap:10px;}
+  .btn-sm{padding:10px;font-size:13px;width:auto;}
 
-  .spacer{flex:1;}
-
-  /* Punch-card step tracker */
-  .tracker{display:flex;gap:4px;margin-bottom:22px;overflow-x:auto;padding-bottom:4px;}
-  .tick{
-    flex:1 0 20px;min-width:20px;height:6px;border-radius:3px;background:var(--surface-2);
-    border:1px solid var(--border);
-  }
+  .tracker{display:flex;gap:4px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px;}
+  .tick{flex:1 0 16px;min-width:16px;height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);}
   .tick.done{background:var(--accent);border-color:var(--accent);}
   .tick.current{background:var(--text);border-color:var(--text);}
 
   .step-count{font-family:var(--mono);font-size:12px;color:var(--text-dim);letter-spacing:.08em;margin-bottom:4px;}
-  .step-title{font-size:24px;font-weight:800;margin:0 0 8px;letter-spacing:-.01em;}
-  .step-instruction{color:var(--text-dim);font-size:15px;line-height:1.55;margin:0 0 20px;}
+  .step-title{font-size:23px;font-weight:800;margin:0 0 8px;letter-spacing:-.01em;}
+  .step-instruction{color:var(--text-dim);font-size:14px;line-height:1.5;margin:0 0 18px;}
 
   .capture-zone{
     background:var(--surface);border:1.5px dashed var(--border);border-radius:14px;
-    min-height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;
-    gap:10px;margin-bottom:18px;overflow:hidden;position:relative;
+    min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;
+    gap:10px;margin-bottom:16px;overflow:hidden;position:relative;
   }
   .capture-zone.filled{border-style:solid;border-color:var(--ok);padding:0;}
-  .capture-zone img{width:100%;height:100%;object-fit:cover;display:block;min-height:280px;}
+  .capture-zone img{width:100%;height:100%;object-fit:cover;display:block;min-height:260px;}
   .capture-placeholder{color:var(--text-dim);text-align:center;font-size:14px;padding:0 20px;}
   .capture-placeholder .glyph{font-size:34px;display:block;margin-bottom:10px;opacity:.6;}
   .retake-badge{
@@ -96,22 +90,27 @@
     border:1px solid var(--accent);
   }
 
-  .capture-actions{display:flex;gap:10px;margin-bottom:22px;}
+  .multi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;width:100%;min-height:260px;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;margin-bottom:16px;align-content:start;}
+  .multi-thumb{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--surface-2);}
+  .multi-thumb img{width:100%;height:100%;object-fit:cover;}
+  .multi-thumb .rm{position:absolute;top:3px;right:3px;background:rgba(20,23,26,.85);color:var(--danger);border:none;width:22px;height:22px;border-radius:50%;font-size:13px;line-height:1;}
+  .multi-add{aspect-ratio:1;border-radius:8px;border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:22px;background:transparent;}
+  .multi-empty{grid-column:1/-1;color:var(--text-dim);text-align:center;font-size:13px;padding:30px 10px;}
+
+  .capture-actions{display:flex;gap:10px;margin-bottom:20px;}
   .capture-actions .btn{flex:1;}
   input[type=file]{display:none;}
 
   .nav-row{display:flex;gap:10px;margin-top:auto;}
   .nav-row .btn{flex:1;}
-  .skip-link{text-align:center;color:var(--text-dim);font-size:13px;margin-top:14px;text-decoration:underline;background:none;border:none;padding:8px;}
+  .skip-link{text-align:center;color:var(--text-dim);font-size:13px;margin-top:12px;text-decoration:underline;background:none;border:none;padding:8px;}
 
-  /* Summary grid */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
   .grid-item{position:relative;border-radius:10px;overflow:hidden;background:var(--surface);border:1px solid var(--border);aspect-ratio:1;}
   .grid-item img{width:100%;height:100%;object-fit:cover;}
   .grid-item .label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:11px;padding:14px 8px 6px;font-family:var(--mono);}
   .grid-item.missing{display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px;text-align:center;padding:8px;border-style:dashed;}
 
-  /* History list */
   .hist-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
   .hist-item .ref{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.04em;}
   .hist-item .meta{color:var(--text-dim);font-size:12px;margin-top:3px;}
@@ -129,6 +128,21 @@
   .damage-item textarea{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;resize:none;font-family:var(--sans);}
   .damage-item textarea:focus{outline:none;}
   .damage-item .del{background:none;border:none;color:var(--danger);font-size:18px;padding:6px;}
+
+  /* Questionnaire */
+  .q-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;}
+  .q-label{font-size:15px;font-weight:600;margin-bottom:12px;line-height:1.4;}
+  .toggle-row{display:flex;gap:10px;}
+  .toggle-btn{flex:1;padding:12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-weight:700;font-size:14px;}
+  .toggle-btn.active-yes{background:var(--ok);border-color:var(--ok);color:#fff;}
+  .toggle-btn.active-no{background:var(--danger);border-color:var(--danger);color:#fff;}
+  .q-extra{margin-top:12px;}
+  .q-extra input[type=text]{margin-bottom:0;font-size:15px;text-transform:none;letter-spacing:normal;}
+  .q-note{color:var(--text-dim);font-size:12px;margin-top:8px;}
+
+  .summary-info{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:18px;}
+  .summary-info div{font-size:13px;color:var(--text-dim);margin-bottom:4px;font-family:var(--mono);}
+  .summary-info div b{color:var(--text);font-family:var(--sans);}
 </style>
 </head>
 <body>
@@ -142,8 +156,18 @@
   <h1>Contrôle véhicule</h1>
   <p class="sub">Fiche d'état des lieux guidée. Tout reste sur cet appareil — aucune connexion requise.</p>
 
-  <div class="field-label">Immatriculation ou référence</div>
-  <input type="text" id="input-ref" placeholder="AB-123-CD" maxlength="20" autocapitalize="characters">
+  <div class="field-block">
+    <div class="field-label">Immatriculation</div>
+    <input type="text" id="input-ref" class="plate" placeholder="AB-123-CD" maxlength="20" autocapitalize="characters">
+  </div>
+  <div class="field-block">
+    <div class="field-label">Modèle du véhicule</div>
+    <input type="text" id="input-model" placeholder="Ex : Peugeot 308">
+  </div>
+  <div class="field-block">
+    <div class="field-label">Nom du loueur / agent</div>
+    <input type="text" id="input-agent" placeholder="Prénom Nom">
+  </div>
 
   <button class="btn btn-primary" onclick="startInspection()">Démarrer le contrôle →</button>
   <div style="height:10px"></div>
@@ -162,12 +186,7 @@
   <h2 class="step-title" id="step-title"></h2>
   <p class="step-instruction" id="step-instruction"></p>
 
-  <div class="capture-zone" id="capture-zone">
-    <div class="capture-placeholder" id="capture-placeholder">
-      <span class="glyph">📷</span>
-      Aucune photo pour cette étape
-    </div>
-  </div>
+  <div id="capture-container"></div>
 
   <div class="capture-actions">
     <button class="btn btn-primary" onclick="triggerCapture('camera')">📷 Photo</button>
@@ -200,7 +219,57 @@
   <input type="file" id="file-damage" accept="image/*" capture="environment">
 
   <div style="height:14px"></div>
-  <button class="btn btn-primary" onclick="showScreen('summary')">Continuer vers le résumé →</button>
+  <button class="btn btn-primary" onclick="showScreen('questionnaire')">Continuer vers le questionnaire →</button>
+</div>
+
+<!-- SCREEN: QUESTIONNAIRE -->
+<div id="screen-questionnaire" class="screen hidden">
+  <div class="platebar">
+    <button class="icon-btn" onclick="showScreen('damages')">←</button>
+    <div class="brand-text">Questionnaire</div>
+    <div style="width:34px"></div>
+  </div>
+  <h1>Vérifications finales</h1>
+  <p class="sub">Répondez aux 4 questions avant de terminer le contrôle.</p>
+
+  <div class="q-block">
+    <div class="q-label">1. Kit de sécurité dans le coffre ?</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="q1-yes" onclick="setQ('kit',true)">Oui</button>
+      <button class="toggle-btn" id="q1-no" onclick="setQ('kit',false)">Non</button>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-label">2. Roue de secours ou kit de gonflage ?</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="q2-yes" onclick="setQ('spare',true)">Oui</button>
+      <button class="toggle-btn" id="q2-no" onclick="setQ('spare',false)">Non</button>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-label">3. Véhicule électrique ?</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="q3-yes" onclick="setQ('electric',true)">Oui</button>
+      <button class="toggle-btn" id="q3-no" onclick="setQ('electric',false)">Non (thermique)</button>
+    </div>
+    <div class="q-extra hidden" id="q3-extra">
+      <div class="field-label">Nombre de câbles disponibles</div>
+      <input type="text" id="q3-cables" placeholder="1 ou 2" oninput="session.questionnaire.cables=this.value">
+    </div>
+    <p class="q-note" id="q3-note"></p>
+  </div>
+
+  <div class="q-block">
+    <div class="q-label">4. Carte grise et conditions de location dans la boîte à gants ?</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="q4-yes" onclick="setQ('papers',true)">Oui</button>
+      <button class="toggle-btn" id="q4-no" onclick="setQ('papers',false)">Non</button>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" onclick="showScreen('summary')">Voir le résumé →</button>
 </div>
 
 <!-- SCREEN: SUMMARY -->
@@ -211,7 +280,8 @@
     <div style="width:34px"></div>
   </div>
   <h1>Résumé du contrôle</h1>
-  <p class="sub" id="summary-sub"></p>
+
+  <div class="summary-info" id="summary-info"></div>
 
   <div class="grid" id="summary-grid"></div>
 
@@ -236,13 +306,16 @@
   <div class="platebar">
     <button class="icon-btn" onclick="showScreen('history')">←</button>
     <div class="brand-text" id="detail-ref" style="font-family:var(--mono);"></div>
-    <button class="icon-btn btn-danger" style="border:1px solid var(--danger);width:34px;" onclick="deleteCurrentDetail()">🗑</button>
+    <button class="icon-btn" style="border:1px solid var(--danger);color:var(--danger);" onclick="deleteCurrentDetail()">🗑</button>
   </div>
-  <p class="sub" id="detail-meta"></p>
+  <div class="summary-info" id="detail-info"></div>
   <div class="grid" id="detail-grid"></div>
+
   <button class="btn btn-primary" onclick="exportPDF(currentDetailId)">📄 Exporter en PDF</button>
   <div style="height:10px"></div>
-  <button class="btn btn-secondary" onclick="saveToGallery(currentDetailId)">🖼 Enregistrer les photos dans la galerie</button>
+  <button class="btn btn-secondary" id="btn-gallery-folder" onclick="saveToGalleryFolder(currentDetailId)">📁 Créer un dossier dans la galerie</button>
+  <div style="height:10px"></div>
+  <button class="btn btn-secondary" onclick="saveToGalleryFlat(currentDetailId)">🖼 Enregistrer les photos (pêle-mêle)</button>
   <div style="height:10px"></div>
   <button class="btn btn-ghost" onclick="exportReport(currentDetailId)">⬇ Rapport HTML (alternative)</button>
   <p class="sub" id="save-gallery-note" style="margin-top:14px;font-size:12px;"></p>
@@ -253,23 +326,20 @@
 <script>
 /* ---------- Données du parcours de contrôle ---------- */
 const STEPS = [
-  {id:'front', title:'Avant du véhicule', instruction:"Prenez le véhicule de face, pare-chocs et calandre bien visibles."},
-  {id:'rear', title:'Arrière du véhicule', instruction:"Photo de l'arrière complet, plaque d'immatriculation lisible."},
-  {id:'left', title:'Côté gauche', instruction:"Vue complète du flanc gauche, portières et bas de caisse."},
-  {id:'right', title:'Côté droit', instruction:"Vue complète du flanc droit, portières et bas de caisse."},
-  {id:'roof', title:'Toit', instruction:"Photo du toit si accessible (rayures, impacts)."},
-  {id:'wheels', title:'Jantes et pneus', instruction:"Photo des 4 jantes ou de chaque jante si dégât localisé."},
-  {id:'mileage', title:'Compteur kilométrique', instruction:"Photo nette du compteur affichant le kilométrage."},
-  {id:'fuel', title:'Niveau de carburant', instruction:"Photo de la jauge de carburant / niveau de batterie."},
-  {id:'dashboard', title:'Tableau de bord', instruction:"Vue d'ensemble du tableau de bord et des voyants."},
-  {id:'front-seats', title:'Sièges avant', instruction:"Propreté et état des sièges avant."},
-  {id:'back-seats', title:'Sièges arrière', instruction:"Propreté et état des sièges arrière."},
-  {id:'trunk', title:'Coffre', instruction:"Photo du coffre, vide et propre, kit de sécurité présent."},
+  {id:'meter', title:'Compteur & niveau de carburant', instruction:"Photographiez le compteur kilométrique, puis la jauge de carburant.", multi:true},
+  {id:'interior', title:'Intérieur du véhicule', instruction:"Avant, arrière, coffre avec kit de sécurité et/ou câbles de recharge. Plusieurs photos possibles.", multi:true},
+  {id:'right-side', title:'Côté droit', instruction:"Vue d'ensemble du côté droit du véhicule. Plusieurs photos possibles.", multi:true},
+  {id:'wheel-fl', title:'Jante avant gauche', instruction:"Photo de la jante avant gauche, face au moyeu.", multi:false},
+  {id:'front', title:'Avant du véhicule', instruction:"Côté avant droit, avant gauche, capot, pare-brise. Plusieurs photos possibles.", multi:true},
+  {id:'left-side', title:'Côté gauche', instruction:"Vue d'ensemble du côté gauche du véhicule. Plusieurs photos possibles.", multi:true},
+  {id:'wheel-fr', title:'Jante avant droite', instruction:"Photo de la jante avant droite, face au moyeu.", multi:false},
+  {id:'wheel-rl', title:'Jante arrière gauche', instruction:"Photo de la jante arrière gauche, face au moyeu.", multi:false},
+  {id:'rear', title:'Arrière du véhicule', instruction:"Côté droit, milieu/gauche, malle du coffre, toit, antenne radio. Plusieurs photos possibles.", multi:true},
+  {id:'wheel-rr', title:'Jante arrière droite', instruction:"Photo de la jante arrière droite, face au moyeu.", multi:false},
 ];
 
-let session = null; // { ref, startedAt, photos:{stepId:{dataUrl,ts}}, damages:[{dataUrl,note,ts}] }
+let session = null;
 let stepIndex = 0;
-let pendingCaptureTarget = null;
 let currentDetailId = null;
 
 /* ---------- IndexedDB ---------- */
@@ -280,9 +350,7 @@ function openDB(){
     const req = indexedDB.open(DB_NAME, 1);
     req.onupgradeneeded = (e)=>{
       const db = e.target.result;
-      if(!db.objectStoreNames.contains(STORE)){
-        db.createObjectStore(STORE, {keyPath:'id'});
-      }
+      if(!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, {keyPath:'id'});
     };
     req.onsuccess = ()=>resolve(req.result);
     req.onerror = ()=>reject(req.error);
@@ -330,13 +398,21 @@ function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
   document.getElementById('screen-'+name).classList.remove('hidden');
   if(name==='history') renderHistory();
+  if(name==='summary') renderSummaryScreen();
+  if(name==='questionnaire') renderQuestionnaire();
 }
 
 /* ---------- Démarrage d'un contrôle ---------- */
 function startInspection(){
   const ref = document.getElementById('input-ref').value.trim().toUpperCase();
-  if(!ref){ showToast('Merci de saisir une référence véhicule'); return; }
-  session = { id: 'insp_'+Date.now(), ref, startedAt: Date.now(), photos:{}, damages:[] };
+  const model = document.getElementById('input-model').value.trim();
+  const agent = document.getElementById('input-agent').value.trim();
+  if(!ref){ showToast('Merci de saisir une immatriculation'); return; }
+  session = {
+    id: 'insp_'+Date.now(), ref, model, agent, startedAt: Date.now(),
+    photos:{}, damages:[],
+    questionnaire:{ kit:null, spare:null, electric:null, cables:'', papers:null }
+  };
   stepIndex = 0;
   document.getElementById('ref-display').textContent = ref;
   document.getElementById('ref-display-summary').textContent = ref;
@@ -356,33 +432,53 @@ function renderTracker(){
   const t = document.getElementById('tracker');
   t.innerHTML = '';
   STEPS.forEach((s,i)=>{
+    const has = (session.photos[s.id]||[]).length>0;
     const el = document.createElement('div');
-    el.className = 'tick' + (session.photos[s.id] ? ' done' : '') + (i===stepIndex ? ' current' : '');
+    el.className = 'tick' + (has ? ' done' : '') + (i===stepIndex ? ' current' : '');
     t.appendChild(el);
   });
 }
 
 function renderStep(){
   const step = STEPS[stepIndex];
+  if(!session.photos[step.id]) session.photos[step.id] = [];
   renderTracker();
   document.getElementById('step-count').textContent = `ÉTAPE ${stepIndex+1} / ${STEPS.length}`;
   document.getElementById('step-title').textContent = step.title;
   document.getElementById('step-instruction').textContent = step.instruction;
 
-  const zone = document.getElementById('capture-zone');
-  const existing = session.photos[step.id];
-  if(existing){
-    zone.classList.add('filled');
-    zone.innerHTML = `<img src="${existing.dataUrl}" alt="${step.title}"><div class="retake-badge">✓ Reprendre</div>`;
+  const container = document.getElementById('capture-container');
+  const photos = session.photos[step.id];
+
+  if(step.multi){
+    let html = `<div class="multi-grid">`;
+    if(photos.length===0){
+      html += `<div class="multi-empty">Aucune photo pour cette étape</div>`;
+    } else {
+      photos.forEach((p,i)=>{
+        html += `<div class="multi-thumb"><img src="${p.dataUrl}"><button class="rm" onclick="removePhoto('${step.id}',${i})">✕</button></div>`;
+      });
+    }
+    html += `</div>`;
+    container.innerHTML = html;
   } else {
-    zone.classList.remove('filled');
-    zone.innerHTML = `<div class="capture-placeholder"><span class="glyph">📷</span>Aucune photo pour cette étape</div>`;
+    const p = photos[0];
+    if(p){
+      container.innerHTML = `<div class="capture-zone filled"><img src="${p.dataUrl}"><div class="retake-badge">✓ Reprendre</div></div>`;
+    } else {
+      container.innerHTML = `<div class="capture-zone"><div class="capture-placeholder"><span class="glyph">📷</span>Aucune photo pour cette étape</div></div>`;
+    }
   }
 
   document.getElementById('prev-btn').style.visibility = stepIndex===0 ? 'hidden' : 'visible';
   const isLast = stepIndex === STEPS.length - 1;
   document.getElementById('next-btn').textContent = isLast ? 'Dégâts →' : 'Suivant →';
-  document.getElementById('skip-btn').classList.toggle('hidden', !!existing);
+  document.getElementById('skip-btn').classList.toggle('hidden', photos.length>0);
+}
+
+function removePhoto(stepId, idx){
+  session.photos[stepId].splice(idx,1);
+  renderStep();
 }
 
 function nextStep(){
@@ -400,7 +496,6 @@ function prevStep(){
 
 /* ---------- Capture photo (caméra ou galerie) ---------- */
 function triggerCapture(target){
-  pendingCaptureTarget = target;
   if(target==='camera') document.getElementById('file-camera').click();
   else if(target==='gallery') document.getElementById('file-gallery').click();
   else if(target==='damage') document.getElementById('file-damage').click();
@@ -411,22 +506,24 @@ function handleFile(input, callback){
     const file = e.target.files[0];
     if(!file) return;
     const reader = new FileReader();
-    reader.onload = (ev)=>{
-      callback(ev.target.result);
-      input.value = '';
-    };
+    reader.onload = (ev)=>{ callback(ev.target.result); input.value=''; };
     reader.readAsDataURL(file);
   });
 }
 
-handleFile(document.getElementById('file-camera'), (dataUrl)=>{
-  session.photos[STEPS[stepIndex].id] = {dataUrl, ts: Date.now()};
+function addPhotoToCurrentStep(dataUrl){
+  const step = STEPS[stepIndex];
+  if(!session.photos[step.id]) session.photos[step.id] = [];
+  if(step.multi){
+    session.photos[step.id].push({dataUrl, ts: Date.now()});
+  } else {
+    session.photos[step.id] = [{dataUrl, ts: Date.now()}];
+  }
   renderStep();
-});
-handleFile(document.getElementById('file-gallery'), (dataUrl)=>{
-  session.photos[STEPS[stepIndex].id] = {dataUrl, ts: Date.now()};
-  renderStep();
-});
+}
+
+handleFile(document.getElementById('file-camera'), addPhotoToCurrentStep);
+handleFile(document.getElementById('file-gallery'), addPhotoToCurrentStep);
 handleFile(document.getElementById('file-damage'), (dataUrl)=>{
   session.damages.push({dataUrl, note:'', ts: Date.now()});
   renderDamages();
@@ -454,21 +551,64 @@ function renderDamages(){
   });
 }
 
+/* ---------- Questionnaire ---------- */
+function setQ(key, val){
+  session.questionnaire[key] = val;
+  if(key==='electric'){
+    document.getElementById('q3-extra').classList.toggle('hidden', !val);
+    document.getElementById('q3-note').textContent = val ? '' : 'Non concerné (véhicule thermique).';
+    if(!val) session.questionnaire.cables = '';
+  }
+  renderQuestionnaire();
+}
+function renderQuestionnaire(){
+  if(!session) return;
+  const q = session.questionnaire;
+  const map = [['q1','kit'],['q2','spare'],['q3','electric'],['q4','papers']];
+  map.forEach(([prefix,key])=>{
+    const yesBtn = document.getElementById(prefix+'-yes');
+    const noBtn = document.getElementById(prefix+'-no');
+    yesBtn.classList.toggle('active-yes', q[key]===true);
+    noBtn.classList.toggle('active-no', q[key]===false);
+  });
+  document.getElementById('q3-extra').classList.toggle('hidden', q.electric!==true);
+  document.getElementById('q3-cables').value = q.cables || '';
+  document.getElementById('q3-note').textContent = q.electric===false ? 'Non concerné (véhicule thermique).' : '';
+}
+
 /* ---------- Résumé ---------- */
+function questionnaireSummaryLines(q){
+  const yn = v => v===true ? 'Oui' : (v===false ? 'Non' : '—');
+  const lines = [
+    `Kit de sécurité : ${yn(q.kit)}`,
+    `Roue de secours / kit gonflage : ${yn(q.spare)}`,
+    `Véhicule électrique : ${yn(q.electric)}` + (q.electric ? ` (${q.cables||'—'} câble(s))` : ''),
+    `CG + conditions dans boîte à gants : ${yn(q.papers)}`,
+  ];
+  return lines;
+}
+
 function renderSummaryScreen(){
+  if(!session) return;
   document.getElementById('ref-display-summary').textContent = session.ref;
-  const done = Object.keys(session.photos).length;
-  document.getElementById('summary-sub').textContent =
-    `${done} / ${STEPS.length} photos prises · ${session.damages.length} dégât(s) noté(s)`;
+  const totalPhotos = STEPS.reduce((s,step)=>s+(session.photos[step.id]||[]).length, 0);
+  const info = document.getElementById('summary-info');
+  info.innerHTML = `
+    <div><b>${session.ref}</b></div>
+    <div>${session.model || 'Modèle non renseigné'}</div>
+    <div>Loueur : ${session.agent || 'non renseigné'}</div>
+    <div>${totalPhotos} photo(s) · ${session.damages.length} dégât(s)</div>
+    ${questionnaireSummaryLines(session.questionnaire).map(l=>`<div>${l}</div>`).join('')}
+  `;
 
   const grid = document.getElementById('summary-grid');
   grid.innerHTML = '';
   STEPS.forEach(step=>{
-    const p = session.photos[step.id];
+    const arr = session.photos[step.id]||[];
     const cell = document.createElement('div');
-    cell.className = 'grid-item' + (p ? '' : ' missing');
-    cell.innerHTML = p
-      ? `<img src="${p.dataUrl}"><div class="label">${step.title}</div>`
+    cell.className = 'grid-item' + (arr.length===0 ? ' missing' : '');
+    cell.innerHTML = arr.length>0
+      ? `<img src="${arr[0].dataUrl}"><div class="label">${step.title}${arr.length>1 ? ' ('+arr.length+')' : ''}</div>`
       : `${step.title}<br><span style="opacity:.6">manquant</span>`;
     cell.onclick = ()=>{ stepIndex = STEPS.indexOf(step); showScreen('step'); };
     grid.appendChild(cell);
@@ -482,7 +622,6 @@ async function finishAndSave(){
   session = null;
   showScreen('history');
   await renderHistory();
-  // ouvrir directement le détail du contrôle qu'on vient de faire
   openDetail(savedId);
 }
 
@@ -501,11 +640,12 @@ async function renderHistory(){
     const date = new Date(item.startedAt);
     const dateStr = date.toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit', year:'numeric'}) +
                     ' · ' + date.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
-    const count = Object.keys(item.photos||{}).length;
+    const count = STEPS.reduce((s,step)=>s+((item.photos||{})[step.id]||[]).length, 0);
     row.innerHTML = `
       <div>
         <div class="ref">${item.ref}</div>
-        <div class="meta">${dateStr} · ${count}/${STEPS.length} photos · ${(item.damages||[]).length} dégât(s)</div>
+        <div class="meta">${item.model || ''}${item.model ? ' · ' : ''}${dateStr}</div>
+        <div class="meta">${count} photos · ${(item.damages||[]).length} dégât(s)${item.agent ? ' · '+item.agent : ''}</div>
       </div>
       <div class="chev">›</div>
     `;
@@ -520,18 +660,26 @@ async function openDetail(id){
   currentDetailId = id;
   document.getElementById('detail-ref').textContent = item.ref;
   const date = new Date(item.startedAt);
-  const count = Object.keys(item.photos||{}).length;
-  document.getElementById('detail-meta').textContent =
-    `${date.toLocaleDateString('fr-FR')} à ${date.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})} · ${count}/${STEPS.length} photos · ${(item.damages||[]).length} dégât(s)`;
+  const dateStr = date.toLocaleDateString('fr-FR') + ' à ' + date.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const count = STEPS.reduce((s,step)=>s+((item.photos||{})[step.id]||[]).length, 0);
+  const q = item.questionnaire || {};
+
+  document.getElementById('detail-info').innerHTML = `
+    <div><b>${item.model || 'Modèle non renseigné'}</b></div>
+    <div>Loueur : ${item.agent || 'non renseigné'}</div>
+    <div>${dateStr}</div>
+    <div>${count} photo(s) · ${(item.damages||[]).length} dégât(s)</div>
+    ${questionnaireSummaryLines(q).map(l=>`<div>${l}</div>`).join('')}
+  `;
 
   const grid = document.getElementById('detail-grid');
   grid.innerHTML = '';
   STEPS.forEach(step=>{
-    const p = (item.photos||{})[step.id];
+    const arr = (item.photos||{})[step.id]||[];
     const cell = document.createElement('div');
-    cell.className = 'grid-item' + (p ? '' : ' missing');
-    cell.innerHTML = p
-      ? `<img src="${p.dataUrl}"><div class="label">${step.title}</div>`
+    cell.className = 'grid-item' + (arr.length===0 ? ' missing' : '');
+    cell.innerHTML = arr.length>0
+      ? `<img src="${arr[0].dataUrl}"><div class="label">${step.title}${arr.length>1 ? ' ('+arr.length+')' : ''}</div>`
       : `${step.title}<br><span style="opacity:.6">manquant</span>`;
     grid.appendChild(cell);
   });
@@ -541,6 +689,18 @@ async function openDetail(id){
     cell.innerHTML = `<img src="${d.dataUrl}"><div class="label">Dégât ${i+1}${d.note ? ' · '+d.note : ''}</div>`;
     grid.appendChild(cell);
   });
+
+  const folderBtn = document.getElementById('btn-gallery-folder');
+  if(window.showDirectoryPicker){
+    folderBtn.classList.remove('hidden');
+    document.getElementById('save-gallery-note').textContent =
+      'Le dossier nommé fonctionne sur Chrome Android (et desktop). Sur iPhone, seul l\'enregistrement pêle-mêle est possible — limite du navigateur, pas de l\'app.';
+  } else {
+    folderBtn.classList.add('hidden');
+    document.getElementById('save-gallery-note').textContent =
+      'Création de dossier non disponible sur ce navigateur (limite iOS/Safari). Utilisez "Enregistrer les photos (pêle-mêle)" : les fichiers sont nommés avec la plaque et la date pour rester faciles à trier.';
+  }
+
   showScreen('detail');
 }
 
@@ -554,63 +714,7 @@ async function deleteCurrentDetail(){
   }
 }
 
-/* ---------- Export rapport HTML autonome ---------- */
-async function exportReport(id){
-  const item = await dbGet(id);
-  if(!item) return;
-  const date = new Date(item.startedAt);
-  const dateStr = date.toLocaleDateString('fr-FR') + ' à ' + date.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-
-  const photoRows = STEPS.map(step=>{
-    const p = (item.photos||{})[step.id];
-    if(!p) return `<div class="ritem missing"><div class="rlabel">${step.title}</div><div class="rmissing">Photo manquante</div></div>`;
-    return `<div class="ritem"><img src="${p.dataUrl}"><div class="rlabel">${step.title}</div></div>`;
-  }).join('');
-
-  const damageRows = (item.damages||[]).map((d,i)=>
-    `<div class="ritem"><img src="${d.dataUrl}"><div class="rlabel">Dégât ${i+1}${d.note ? ' — '+escapeHtml(d.note) : ''}</div></div>`
-  ).join('');
-
-  const html = `<!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><title>Contrôle ${escapeHtml(item.ref)}</title>
-<style>
-body{font-family:-apple-system,Arial,sans-serif;background:#14171A;color:#ECEEF0;margin:0;padding:24px;}
-h1{font-size:24px;margin:0 0 4px;}
-.meta{color:#8B939B;font-size:14px;margin-bottom:24px;font-family:monospace;}
-.section{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#F5B700;margin:26px 0 12px;font-family:monospace;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
-.ritem{background:#1E2226;border:1px solid #33393F;border-radius:10px;overflow:hidden;}
-.ritem img{width:100%;display:block;}
-.ritem.missing{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:140px;border-style:dashed;}
-.rlabel{padding:8px 10px;font-size:12px;font-family:monospace;}
-.rmissing{color:#8B939B;font-size:12px;}
-</style></head>
-<body>
-<h1>Fiche de contrôle — ${escapeHtml(item.ref)}</h1>
-<div class="meta">${dateStr} · Généré localement, aucune donnée transmise à un serveur</div>
-<div class="section">Photos du contrôle</div>
-<div class="grid">${photoRows}</div>
-${damageRows ? `<div class="section">Dégâts constatés</div><div class="grid">${damageRows}</div>` : ''}
-</body></html>`;
-
-  const blob = new Blob([html], {type:'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `controle-${item.ref}.html`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  showToast('Rapport exporté');
-}
-
-function escapeHtml(str){
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
+/* ---------- Helpers noms de fichiers ---------- */
 function dateSlug(ts){
   const d = new Date(ts);
   const p = n=>String(n).padStart(2,'0');
@@ -623,23 +727,29 @@ function slugify(str){
 function refSlug(ref){
   return ref.replace(/[^A-Z0-9]/gi,'').toUpperCase();
 }
-
-/* ---------- Enregistrement des photos nommées (téléchargement individuel) ---------- */
-async function saveToGallery(id){
-  const item = await dbGet(id);
-  if(!item) return;
+function buildFileList(item){
   const ds = dateSlug(item.startedAt);
   const ref = refSlug(item.ref);
   const files = [];
   STEPS.forEach(step=>{
-    const p = (item.photos||{})[step.id];
-    if(p) files.push({dataUrl:p.dataUrl, name:`${ref}_${ds}_${slugify(step.title)}.jpg`});
+    const arr = (item.photos||{})[step.id]||[];
+    arr.forEach((p,i)=>{
+      const suffix = arr.length>1 ? `-${i+1}` : '';
+      files.push({dataUrl:p.dataUrl, name:`${ref}_${ds}_${slugify(step.title)}${suffix}.jpg`});
+    });
   });
   (item.damages||[]).forEach((d,i)=>{
     files.push({dataUrl:d.dataUrl, name:`${ref}_${ds}_degat-${i+1}.jpg`});
   });
-  if(files.length===0){ showToast('Aucune photo à enregistrer'); return; }
+  return files;
+}
 
+/* ---------- Enregistrement pêle-mêle (téléchargements nommés) ---------- */
+async function saveToGalleryFlat(id){
+  const item = await dbGet(id);
+  if(!item) return;
+  const files = buildFileList(item);
+  if(files.length===0){ showToast('Aucune photo à enregistrer'); return; }
   showToast(`Enregistrement de ${files.length} photo(s)...`);
   for(let i=0;i<files.length;i++){
     const f = files[i];
@@ -649,11 +759,108 @@ async function saveToGallery(id){
     document.body.appendChild(a);
     a.click();
     a.remove();
-    await new Promise(r=>setTimeout(r, 350)); // évite que le navigateur bloque les téléchargements groupés
+    await new Promise(r=>setTimeout(r, 350));
   }
-  document.getElementById('save-gallery-note').textContent =
-    `${files.length} photo(s) téléchargée(s), nommées ${ref}_${ds}_[étape].jpg. Selon le téléphone : Android → dossier Téléchargements (visible dans Galerie/Photos) ; iOS → app Fichiers, avec possibilité de les enregistrer dans Photos.`;
   showToast('Photos enregistrées');
+}
+
+/* ---------- Enregistrement dans un dossier dédié (Chrome/Android + desktop) ---------- */
+async function saveToGalleryFolder(id){
+  if(!window.showDirectoryPicker){ showToast('Non disponible sur ce navigateur'); return; }
+  const item = await dbGet(id);
+  if(!item) return;
+  try{
+    const parentHandle = await window.showDirectoryPicker();
+    const folderName = `${refSlug(item.ref)}_${dateSlug(item.startedAt)}`;
+    const dirHandle = await parentHandle.getDirectoryHandle(folderName, {create:true});
+    const files = buildFileList(item);
+    if(files.length===0){ showToast('Aucune photo à enregistrer'); return; }
+    showToast(`Création du dossier "${folderName}"...`);
+    for(const f of files){
+      const resp = await fetch(f.dataUrl);
+      const blob = await resp.blob();
+      const fileHandle = await dirHandle.getFileHandle(f.name, {create:true});
+      const writable = await fileHandle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+    }
+    showToast(`Dossier "${folderName}" créé avec ${files.length} photo(s)`);
+  } catch(err){
+    if(err.name==='AbortError') return;
+    showToast('Impossible de créer le dossier — enregistrement pêle-mêle en secours');
+    saveToGalleryFlat(id);
+  }
+}
+
+/* ---------- Export rapport HTML autonome ---------- */
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+async function exportReport(id){
+  const item = await dbGet(id);
+  if(!item) return;
+  const date = new Date(item.startedAt);
+  const dateStr = date.toLocaleDateString('fr-FR') + ' à ' + date.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+
+  const photoRows = STEPS.map(step=>{
+    const arr = (item.photos||{})[step.id]||[];
+    if(arr.length===0) return `<div class="ritem missing"><div class="rlabel">${escapeHtml(step.title)}</div><div class="rmissing">Photo manquante</div></div>`;
+    return arr.map((p,i)=>`<div class="ritem"><img src="${p.dataUrl}"><div class="rlabel">${escapeHtml(step.title)}${arr.length>1 ? ' ('+(i+1)+'/'+arr.length+')' : ''}</div></div>`).join('');
+  }).join('');
+
+  const damageRows = (item.damages||[]).map((d,i)=>
+    `<div class="ritem"><img src="${d.dataUrl}"><div class="rlabel">Dégât ${i+1}${d.note ? ' — '+escapeHtml(d.note) : ''}</div></div>`
+  ).join('');
+
+  const q = item.questionnaire || {};
+  const yn = v => v===true ? 'Oui' : (v===false ? 'Non' : '—');
+  const qRows = `
+    <div class="qrow">Kit de sécurité dans le coffre : <b>${yn(q.kit)}</b></div>
+    <div class="qrow">Roue de secours / kit de gonflage : <b>${yn(q.spare)}</b></div>
+    <div class="qrow">Véhicule électrique : <b>${yn(q.electric)}</b>${q.electric ? ' — câbles : '+escapeHtml(q.cables||'—') : ''}</div>
+    <div class="qrow">CG + conditions de location dans la boîte à gants : <b>${yn(q.papers)}</b></div>
+  `;
+
+  const html = `<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Contrôle ${escapeHtml(item.ref)}</title>
+<style>
+body{font-family:-apple-system,Arial,sans-serif;background:#14171A;color:#ECEEF0;margin:0;padding:24px;}
+h1{font-size:24px;margin:0 0 4px;}
+.meta{color:#8B939B;font-size:14px;margin-bottom:6px;font-family:monospace;}
+.section{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#F5B700;margin:26px 0 12px;font-family:monospace;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.ritem{background:#1E2226;border:1px solid #33393F;border-radius:10px;overflow:hidden;}
+.ritem img{width:100%;display:block;}
+.ritem.missing{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:140px;border-style:dashed;}
+.rlabel{padding:8px 10px;font-size:12px;font-family:monospace;}
+.rmissing{color:#8B939B;font-size:12px;}
+.qrow{background:#1E2226;border:1px solid #33393F;border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:14px;}
+</style></head>
+<body>
+<h1>Fiche de contrôle — ${escapeHtml(item.ref)}</h1>
+<div class="meta">${escapeHtml(item.model||'')}</div>
+<div class="meta">Loueur : ${escapeHtml(item.agent||'non renseigné')}</div>
+<div class="meta">${dateStr} · Généré localement, aucune donnée transmise à un serveur</div>
+<div class="section">Photos du contrôle</div>
+<div class="grid">${photoRows}</div>
+${damageRows ? `<div class="section">Dégâts constatés</div><div class="grid">${damageRows}</div>` : ''}
+<div class="section">Questionnaire</div>
+${qRows}
+</body></html>`;
+
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `controle-${item.ref}.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast('Rapport exporté');
 }
 
 /* ---------- Génération de PDF (100% locale, sans librairie externe) ---------- */
@@ -670,7 +877,7 @@ async function imageToJpegInfo(dataUrl, maxDim){
       canvas.width = w; canvas.height = h;
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0, w, h);
-      const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.8);
       const base64 = jpegDataUrl.split(',')[1];
       const binary = atob(base64);
       const bytes = new Uint8Array(binary.length);
@@ -704,9 +911,7 @@ class PDFBuilder{
     });
     const xrefOffset = offset;
     let xref = `xref\n0 ${this.objects.length+1}\n0000000000 65535 f \n`;
-    for(let i=1;i<=this.objects.length;i++){
-      xref += String(offsets[i]).padStart(10,'0') + ' 00000 n \n';
-    }
+    for(let i=1;i<=this.objects.length;i++) xref += String(offsets[i]).padStart(10,'0') + ' 00000 n \n';
     const trailer = `trailer\n<< /Size ${this.objects.length+1} /Root ${rootNum} 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
     parts.push(enc.encode(xref));
     parts.push(enc.encode(trailer));
@@ -721,12 +926,9 @@ class PDFBuilder{
 function pdfEscape(str){
   return str.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
 }
-function pdfLatin1Bytes(str){
-  // WinAnsiEncoding: les caractères accentués français (é, è, à...) partagent
-  // les mêmes codes que Latin-1 pour ces points de code, donc charCodeAt suffit.
-  const bytes = new Uint8Array(str.length);
-  for(let i=0;i<str.length;i++) bytes[i] = str.charCodeAt(i) & 0xFF;
-  return bytes;
+function pdfEscapeStr(str){
+  const noAccents = str.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  return pdfEscape(noAccents);
 }
 
 async function exportPDF(id){
@@ -739,17 +941,17 @@ async function exportPDF(id){
   const fontObj = pdf.addObject([enc.encode('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>')]);
   const fontBoldObj = pdf.addObject([enc.encode('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>')]);
 
-  // Préparer la liste des items à imprimer (étapes + dégâts)
   const entries = [];
   STEPS.forEach(step=>{
-    const p = (item.photos||{})[step.id];
-    if(p) entries.push({label: step.title, dataUrl: p.dataUrl});
+    const arr = (item.photos||{})[step.id]||[];
+    arr.forEach((p,i)=>{
+      entries.push({label: step.title + (arr.length>1 ? ` (${i+1}/${arr.length})` : ''), dataUrl: p.dataUrl});
+    });
   });
   (item.damages||[]).forEach((d,i)=>{
     entries.push({label: `Dégât ${i+1}${d.note ? ' — '+d.note : ''}`, dataUrl: d.dataUrl});
   });
 
-  // Convertir chaque image en JPEG + créer l'objet XObject
   const imageInfos = [];
   for(const e of entries){
     const info = await imageToJpegInfo(e.dataUrl, 1000);
@@ -762,63 +964,80 @@ async function exportPDF(id){
     imageInfos.push({label: e.label, objNum: imgObjNum, width: info.width, height: info.height});
   }
 
-  // Page geometry (A4 portrait, points)
   const PW = 595, PH = 842, MARGIN = 40;
   const date = new Date(item.startedAt);
-  const dateStr = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const dateStr = date.toLocaleDateString('fr-FR') + ' à ' + date.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const q = item.questionnaire || {};
+  const yn = v => v===true ? 'Oui' : (v===false ? 'Non' : '-');
 
   const pagesObjNum = pdf.reserve();
   const pageObjNums = [];
-  const PER_PAGE = 2;
-  const slotH = (PH - MARGIN*2 - 40 - 20) / PER_PAGE; // 40 header space first page only handled separately below
 
+  // Page de garde : infos + questionnaire
+  {
+    let content = '';
+    let y = PH - MARGIN;
+    content += `BT /F2 20 Tf ${MARGIN} ${y} Td (${pdfEscapeStr('Fiche de controle - '+item.ref)}) Tj ET\n`;
+    y -= 26;
+    content += `BT /F1 11 Tf ${MARGIN} ${y} Td (${pdfEscapeStr('Date : '+dateStr)}) Tj ET\n`;
+    y -= 18;
+    content += `BT /F1 11 Tf ${MARGIN} ${y} Td (${pdfEscapeStr('Modele : '+(item.model||'non renseigne'))}) Tj ET\n`;
+    y -= 18;
+    content += `BT /F1 11 Tf ${MARGIN} ${y} Td (${pdfEscapeStr('Loueur : '+(item.agent||'non renseigne'))}) Tj ET\n`;
+    y -= 30;
+    content += `BT /F2 13 Tf ${MARGIN} ${y} Td (${pdfEscapeStr('Questionnaire')}) Tj ET\n`;
+    y -= 20;
+    const qLines = [
+      'Kit de securite dans le coffre : ' + yn(q.kit),
+      'Roue de secours / kit de gonflage : ' + yn(q.spare),
+      'Vehicule electrique : ' + yn(q.electric) + (q.electric ? ' - cables : '+(q.cables||'-') : ''),
+      'CG + conditions de location dans la boite a gants : ' + yn(q.papers),
+    ];
+    qLines.forEach(line=>{
+      content += `BT /F1 11 Tf ${MARGIN} ${y} Td (${pdfEscapeStr(line)}) Tj ET\n`;
+      y -= 18;
+    });
+    y -= 10;
+    content += `BT /F1 9 Tf ${MARGIN} ${y} Td (${pdfEscapeStr('Genere localement sur le telephone, aucune donnee transmise a un serveur.')}) Tj ET\n`;
+
+    const contentBytes = enc.encode(content);
+    const contentObjNum = pdf.addObject([enc.encode(`<< /Length ${contentBytes.length} >>\nstream\n`), contentBytes, enc.encode('\nendstream')]);
+    const pageObjNum = pdf.addObject([enc.encode(
+      `<< /Type /Page /Parent ${pagesObjNum} 0 R /MediaBox [0 0 ${PW} ${PH}] /Resources << /Font << /F1 ${fontObj} 0 R /F2 ${fontBoldObj} 0 R >> >> /Contents ${contentObjNum} 0 R >>`
+    )]);
+    pageObjNums.push(pageObjNum);
+  }
+
+  // Pages photos (2 par page)
+  const PER_PAGE = 2;
   for(let i=0;i<imageInfos.length;i+=PER_PAGE){
     const group = imageInfos.slice(i, i+PER_PAGE);
-    const isFirstPage = i===0;
     let content = '';
     let resourcesXObj = [];
     let cursorY = PH - MARGIN;
-
-    if(isFirstPage){
-      content += `BT /F2 18 Tf ${MARGIN} ${cursorY-18} Td (${pdfEscapeStr('Fiche de controle - '+item.ref)}) Tj ET\n`;
-      content += `BT /F1 10 Tf ${MARGIN} ${cursorY-36} Td (${pdfEscapeStr(dateStr+' - genere localement, aucune donnee transmise')}) Tj ET\n`;
-      cursorY -= 56;
-    }
-
     const availH = cursorY - MARGIN;
     const perSlotH = availH / group.length;
 
     group.forEach((g, gi)=>{
       const slotTop = cursorY - gi*perSlotH;
-      const slotBottom = slotTop - perSlotH + 22; // réserve pour le label
+      const slotBottom = slotTop - perSlotH + 22;
       const maxW = PW - MARGIN*2;
       const maxH = perSlotH - 26;
       let w = g.width, h = g.height;
       const scale = Math.min(maxW / w, maxH / h);
       w = w*scale; h = h*scale;
       const x = MARGIN + (maxW - w)/2;
-      const y = slotBottom - h + (maxH - h); // centrage vertical approximatif
+      const y = Math.max(slotBottom - h + (maxH - h), MARGIN+16);
       const imgKey = `Im${gi}`;
       resourcesXObj.push(`/${imgKey} ${g.objNum} 0 R`);
-      content += `q ${w.toFixed(2)} 0 0 ${h.toFixed(2)} ${x.toFixed(2)} ${Math.max(y,MARGIN+16).toFixed(2)} cm /${imgKey} Do Q\n`;
-      content += `BT /F1 10 Tf ${MARGIN} ${(Math.max(y,MARGIN+16)-14).toFixed(2)} Td (${pdfEscapeStr(g.label)}) Tj ET\n`;
+      content += `q ${w.toFixed(2)} 0 0 ${h.toFixed(2)} ${x.toFixed(2)} ${y.toFixed(2)} cm /${imgKey} Do Q\n`;
+      content += `BT /F1 10 Tf ${MARGIN} ${(y-14).toFixed(2)} Td (${pdfEscapeStr(g.label)}) Tj ET\n`;
     });
 
     const contentBytes = enc.encode(content);
     const contentObjNum = pdf.addObject([enc.encode(`<< /Length ${contentBytes.length} >>\nstream\n`), contentBytes, enc.encode('\nendstream')]);
     const pageObjNum = pdf.addObject([enc.encode(
       `<< /Type /Page /Parent ${pagesObjNum} 0 R /MediaBox [0 0 ${PW} ${PH}] /Resources << /Font << /F1 ${fontObj} 0 R /F2 ${fontBoldObj} 0 R >> /XObject << ${resourcesXObj.join(' ')} >> >> /Contents ${contentObjNum} 0 R >>`
-    )]);
-    pageObjNums.push(pageObjNum);
-  }
-
-  if(pageObjNums.length===0){
-    // aucune photo : générer une page vide informative
-    const content = `BT /F2 18 Tf ${MARGIN} ${PH-60} Td (${pdfEscapeStr('Fiche de controle - '+item.ref)}) Tj ET\nBT /F1 11 Tf ${MARGIN} ${PH-84} Td (${pdfEscapeStr('Aucune photo enregistree pour ce controle.')}) Tj ET\n`;
-    const contentBytes = enc.encode(content);
-    const contentObjNum = pdf.addObject([enc.encode(`<< /Length ${contentBytes.length} >>\nstream\n`), contentBytes, enc.encode('\nendstream')]);
-    const pageObjNum = pdf.addObject([enc.encode(
-      `<< /Type /Page /Parent ${pagesObjNum} 0 R /MediaBox [0 0 ${PW} ${PH}] /Resources << /Font << /F1 ${fontObj} 0 R /F2 ${fontBoldObj} 0 R >> >> /Contents ${contentObjNum} 0 R >>`
     )]);
     pageObjNums.push(pageObjNum);
   }
@@ -838,11 +1057,6 @@ async function exportPDF(id){
   URL.revokeObjectURL(url);
   showToast('PDF exporté');
 }
-function pdfEscapeStr(str){
-  // retire les accents pour compatibilité maximale avec la police de base Helvetica
-  const noAccents = str.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  return pdfEscape(noAccents);
-}
 
 /* ---------- Toast ---------- */
 let toastTimer;
@@ -853,14 +1067,6 @@ function showToast(msg){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.add('hidden'), 2400);
 }
-
-/* ---------- Câblage écrans -> rendu ---------- */
-const _showScreen = showScreen;
-showScreen = function(name){
-  _showScreen(name);
-  if(name==='summary') renderSummaryScreen();
-  if(name==='history') renderHistory();
-};
 
 /* ---------- Service worker (fonctionnement hors-ligne) ---------- */
 if('serviceWorker' in navigator){
