@@ -1,4 +1,4 @@
-const CACHE_NAME = 'controle-vehicule-v2';
+const CACHE_NAME = 'controle-vehicule-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -29,7 +29,7 @@ self.addEventListener('activate', (event) => {
 // Le cache ne sert de secours que si l'appareil est hors-ligne (aucune connexion).
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    fetch(event.request).then((response) => {
+    fetch(event.request, { cache: 'no-store' }).then((response) => {
       if (response.ok && event.request.method === 'GET') {
         const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
